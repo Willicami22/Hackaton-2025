@@ -32,12 +32,15 @@ public class ImageController {
     }
 
     @PostMapping
-    public ResponseEntity<Image> uploadImage(@RequestParam("image") MultipartFile image) {
+    public ResponseEntity<String> uploadImage(@RequestParam("image") MultipartFile image) {
         try {
             Image savedImage = imageService.uploadImage(image);
-            return ResponseEntity.status(HttpStatus.CREATED).body(savedImage);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Imagen subida exitosamente con ID: " + savedImage.getId());
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error de validación: " + e.getMessage());
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error interno: " + e.getMessage());
         }
     }
 }

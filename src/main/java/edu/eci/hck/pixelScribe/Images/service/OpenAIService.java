@@ -23,7 +23,7 @@ public class OpenAIService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     private static final String OPENAI_API_URL = "https://api.openai.com/v1/chat/completions";
-    private static final String MODEL = "gpt-4-vision";
+    private static final String MODEL = "gpt-4o";
 
     public AnalysisResponse analyzeImage(byte[] imageData, String imageFormat) {
         String base64Image = Base64.getEncoder().encodeToString(imageData);
