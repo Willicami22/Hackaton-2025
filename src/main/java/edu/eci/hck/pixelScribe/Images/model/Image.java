@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@Document(collection = "imagenes")
+@Document(collection = "images")
 public class Image {
 
     @Id
@@ -15,6 +15,6 @@ public class Image {
 
     private String nombre;
     private byte[] datos;
-    private String descripcion;
+    private Description descripcion;
 }
 
