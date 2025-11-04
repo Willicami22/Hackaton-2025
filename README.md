@@ -5,10 +5,11 @@
 
 ## Integrantes 
 
-- 
--  
-- 
-- 
+- Nicolas Toro
+- Juan David Zambrano 
+- Juan Felipe Rangel
+- William Camilo Hernandez
+
 
 ---
 
