@@ -12,7 +12,6 @@ public class Image {
 
     @Id
     private String id;
-
     private String nombre;
     private byte[] datos;
     private Description descripcion;
