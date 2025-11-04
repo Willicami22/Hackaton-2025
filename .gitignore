@@ -32,5 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
+./src/main/resources/application.properties
+
 CLAUDE.md
 INTEGRATION_GUIDE.md
