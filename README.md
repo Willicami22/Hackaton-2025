@@ -3,10 +3,10 @@
 
 ## Desafío Hackatón: "PixelScribe"
 
-## Integrantes 
+## Integrantes
 
 - Nicolas Toro
-- Juan David Zambrano 
+- Juan David Zambrano
 - Juan Felipe Rangel
 - William Camilo Hernandez
 
@@ -29,19 +29,19 @@ Cada análisis se almacena en una base de datos y puede visualizarse posteriorme
 ## Objetivos Específicos
 
 
-1. **Autenticación Segura:** Implementar un sistema de registro e inicio de sesión basado en Auth0, garantizando el acceso seguro de los usuarios.
+1. *Autenticación Segura:* Implementar un sistema de registro e inicio de sesión basado en Auth0, garantizando el acceso seguro de los usuarios.
 
-2. **Gestión de Imágenes:** Permitir la subida y almacenamiento de imágenes desde la interfaz web de manera sencilla.
+2. *Gestión de Imágenes:* Permitir la subida y almacenamiento de imágenes desde la interfaz web de manera sencilla.
 
-3. **Análisis de IA:** Integrar una API de inteligencia artificial multimodal (como Gemini o GPT) para generar descripciones automáticas, etiquetas y texto OCR.
+3. *Análisis de IA:* Integrar una API de inteligencia artificial multimodal (como Gemini o GPT) para generar descripciones automáticas, etiquetas y texto OCR.
 
-4. **Visualización de Resultados:** Mostrar en el dashboard del usuario sus imágenes procesadas junto con los resultados generados por la IA.
+4. *Visualización de Resultados:* Mostrar en el dashboard del usuario sus imágenes procesadas junto con los resultados generados por la IA.
 
-5. **Arquitectura Robusta (Categoría Senior):** Diseñar un sistema asíncrono y escalable con colas de procesamiento, notificaciones en tiempo real y contenedores dockerizados.
+5. *Arquitectura Robusta (Categoría Senior):* Diseñar un sistema asíncrono y escalable con colas de procesamiento, notificaciones en tiempo real y contenedores dockerizados.
 
-6. **Despliegue y Accesibilidad:** Asegurar que tanto el frontend como el backend estén desplegados públicamente en entornos accesibles, garantizando una experiencia de demostración fluida.
+6. *Despliegue y Accesibilidad:* Asegurar que tanto el frontend como el backend estén desplegados públicamente en entornos accesibles, garantizando una experiencia de demostración fluida.
 
-7. **Colaboración y Transparencia:** Mantener un flujo de trabajo colaborativo con commits frecuentes, ramas por funcionalidad y documentación clara del uso de herramientas de IA durante el desarrollo.
+7. *Colaboración y Transparencia:* Mantener un flujo de trabajo colaborativo con commits frecuentes, ramas por funcionalidad y documentación clara del uso de herramientas de IA durante el desarrollo.
 
 ---
 
@@ -58,51 +58,53 @@ Cada análisis se almacena en una base de datos y puede visualizarse posteriorme
 
 ## Estructura del proyecto
 
+![alt text](<img/image copy 2.png>)
+
 
 ---
 
 ## Arquitectura general del proyecto
 
-### **Enfoque General: Monolito Modular**
+### *Enfoque General: Monolito Modular*
 
 PixelScribe está diseñado bajo una arquitectura monolítica modular, lo que significa que toda la aplicación (backend, lógica de negocio y comunicación con la base de datos) reside dentro de un mismo servicio desplegable, pero con una separación interna por dominios funcionales.
 Este enfoque permite mantener la simplicidad del despliegue y la comunicación interna, al mismo tiempo que se garantiza una organización limpia del código y una escalabilidad futura hacia microservicios si el proyecto evoluciona.
 
 La aplicación se estructura en módulos independientes, cada uno con responsabilidades claras:
 
-**Módulo de Autenticación (Usuarios):** Gestionado mediante servicios REST.
+*Módulo de Autenticación (Usuarios):* Gestionado mediante servicios REST.
 
-**Módulo de Imágenes:** basado en eventos internos para el análisis y procesamiento asíncrono.
+*Módulo de Imágenes:* basado en eventos internos para el análisis y procesamiento asíncrono.
 
 ---
 
 
-**Módulo de Autenticación (REST + Auth0)**
+*Módulo de Autenticación (REST + Auth0)*
 
 El área de autenticación y control de acceso se implementa utilizando Auth0, un proveedor externo de identidad que maneja todo el flujo de login, registro y gestión de usuarios.
 Esto permite un enfoque seguro, escalable y conforme a estándares, eliminando la necesidad de manejar contraseñas directamente dentro del sistema.
 
-**El flujo general es el siguiente:**
+*El flujo general es el siguiente:*
 
 El usuario se autentica mediante Auth0 (usando email/password o proveedores externos como Google).
 
 Auth0 genera un token JWT que contiene la identidad y permisos del usuario. El frontend envía este token al backend en cada solicitud protegida. El backend valida el token con Auth0 antes de permitir el acceso a los recursos o ejecutar acciones restringidas.
 
-**El módulo REST del backend se encarga de:**
+*El módulo REST del backend se encarga de:*
 
-- Exponer los endpoints seguros para la aplicación. 
-- Validar tokens y roles de usuario con las librerías oficiales de Auth0. 
+- Exponer los endpoints seguros para la aplicación.
+- Validar tokens y roles de usuario con las librerías oficiales de Auth0.
 - Gestionar la sesión y la autorización por roles o ámbitos (scopes).
 
 ---
 
 
-**Módulo de Imágenes (Procesamiento por Eventos)**
+*Módulo de Imágenes (Procesamiento por Eventos)*
 
 El procesamiento y análisis de imágenes se implementa mediante un modelo basado en eventos.
 Cuando un usuario sube una imagen, el backend emite un evento interno que desencadena los procesos de análisis de forma asíncrona, sin bloquear la experiencia del usuario.
 
-**Este módulo se encarga de:**
+*Este módulo se encarga de:*
 
 - Almacenar la imagen y sus metadatos.
 
@@ -124,4 +126,8 @@ El uso de eventos permite manejar múltiples análisis simultáneamente y escala
 ![alt text](img/image.png)
 
 
+## Funcionalidad
 
+Al hacer las peticiones en Postman se puede ver la conexion, solo que por falta de credito en la cuenta no la permite.
+
+![alt text](<img/image copy 3.png>)
